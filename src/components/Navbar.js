@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 class Navbar extends React.Component {
   render() {
-    console.log(this.props, 'line 6 nav');
+    // console.log(this.props, 'line 6 nav');
     return <div className="nav">
         <div className="search-container">
             <input type="text" />

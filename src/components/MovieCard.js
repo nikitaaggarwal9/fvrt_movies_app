@@ -1,17 +1,22 @@
 import React, { Component } from "react";
-// import { addFavourite } from "../actions";
-// import { connect } from "react-redux";
+import { addFavourite, removeFavourite } from "../actions";
+import { connect } from "react-redux";
 
-export default class MovieCard extends Component {
+class MovieCard extends Component {
   handleFavouriteClick = () => {
     const { movie, addFavourite } = this.props;
     addFavourite(movie);
-
+    
     console.log(movie.Title, "added to Favourites");
   };
+  
+  handleUnfavouriteClick = () => {
+    const { movie, removeFavourite } = this.props;
+    removeFavourite(movie);
 
-  handleUnfavouriteClick = () => {};
-
+    console.log(movie.Title, "removed from Favourites");
+  };
+  
   render() {
     const { movie, isFavourite } = this.props;
     // console.log(this.props);
@@ -47,8 +52,8 @@ export default class MovieCard extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return state;
-// }
+const mapStateToProps = (state) => {
+  return state;
+}
 
-// export default connect(mapStateToProps, { addFavourite })(MovieCard);
+export default connect(mapStateToProps, { addFavourite, removeFavourite })(MovieCard);
