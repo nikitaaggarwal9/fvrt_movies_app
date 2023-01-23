@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 // import { createStore } from "redux";  // deprecated
 import { configureStore } from "@reduxjs/toolkit";
 import "./index.css";
@@ -19,6 +20,8 @@ const store = configureStore({ reducer: movies });
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App store={store}/>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );

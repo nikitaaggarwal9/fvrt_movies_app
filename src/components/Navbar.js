@@ -1,7 +1,9 @@
 import React from "react";
+import {connect} from 'react-redux'
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
   render() {
+    console.log(this.props, 'line 6 nav');
     return <div className="nav">
         <div className="search-container">
             <input type="text" />
@@ -10,3 +12,9 @@ export default class Navbar extends React.Component {
     </div>;
   }
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, {})(Navbar);

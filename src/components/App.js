@@ -1,31 +1,44 @@
 import { useEffect, useState } from "react";
+import { connect } from "react-redux";
 // import Navbar from "./Navbar";
 // import MovieCard from "./MovieCard";
 import { Navbar, MovieCard } from "./";
 import { data } from "../data";
-import { addMovies } from "../actions";
+import { addMovies, addFavourite } from "../actions";
 
-export default function App(props) {
-  const [state, setState] = useState();
+function App(props) {
+  // const [state, setState] = useState(true);
   useEffect(() => {
-    const { store } = props;
+    // const { store } = props;
 
     // store.subscribe(()=> {
     //   this.forceUpdate();
     // })
 
-    store.dispatch(addMovies(data));
+    // props.dispatch(addMovies(data));
+    props.addMovies(data);
 
-    setState(true);
-    console.log("State", store.getState());
-  }, []);
+    // setState(prev => !prev);
+    console.log("State", props);
+  }, [props]);
+
+  const isMovieFavourite = movie => {
+    const { favourites } = props;
+
+    const index = favourites.indexOf(movie);
+    if (index !== -1) return true;
+
+    return false;
+  };
 
   // useEffect(() => {
-  //   console.log(props);
-  //   console.log(props.store.getState());
-  // }, [props]);
+  //   // console.log(props);
+  //   console.log("Render", props.store.getState());
+  //   console.log(state);
+  // }, [state]);
 
-  const { list } = props.store.getState();
+  console.log(props);
+  const { list } = props;
 
   return (
     <div className="App">
@@ -37,11 +50,23 @@ export default function App(props) {
         </div>
 
         <div className="list">
-          {list.map(movie => (
-            <MovieCard movie={movie} />
+          {list.map((movie, index) => (
+            <MovieCard
+              movie={movie}
+              key={`movies-${index}`}
+              addFavourite={props.addFavourite}
+              // dispatch={props.dispatch}
+              isFavourite={isMovieFavourite(movie)}
+            />
           ))}
         </div>
       </div>
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, { addMovies, addFavourite })(App);
