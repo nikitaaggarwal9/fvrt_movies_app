@@ -42,3 +42,18 @@ export default function movies(state = initialMoviesState, action) {
       return state;
   }
 }
+
+const initialSearchState = {
+  result: {}
+};
+
+export function search (state = initialSearchState, action) {
+  return state;
+}
+
+export default function rootReducer(state = initailRootState, action) {
+  return {
+    movies: movies(state, action),
+    search: search(state, action),
+  }
+}
