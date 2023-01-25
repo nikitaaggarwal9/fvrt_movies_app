@@ -5,10 +5,10 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import "./index.css";
 import App from "./components/App";
-import movies from "./reducers";
+import rootReducer from "./reducers";
 
 // const store = createStore();  // deprecated
-const store = configureStore({ reducer: movies });
+const store = configureStore({ reducer: rootReducer });
 
 // console.log("Before: ", store.getState());
 // store.dispatch({

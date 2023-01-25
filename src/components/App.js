@@ -23,7 +23,7 @@ function App(props) {
   }, []);
 
   const isMovieFavourite = movie => {
-    const { favourites } = props;
+    const { favourites } = props.movies;
 
     const index = favourites.indexOf(movie);
     if (index !== -1) return true;
@@ -42,7 +42,8 @@ function App(props) {
   // }, [state]);
 
   // console.log(props);
-  const { list, favourites, showFavourites } = props;
+  const { movies } = props;
+  const { list, favourites, showFavourites } = movies;
   const displayMovies = showFavourites ? favourites : list;
   return (
     <div className="App">
